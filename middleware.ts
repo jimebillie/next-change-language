@@ -6,7 +6,7 @@ import {redirect} from "next/navigation";
 export function middleware(request: NextRequest) {
     /**
      * -------------------------------------------
-     * # Ref
+     * # Ref how to use cookie
      * -------------------------------------------
      * @desc -
      * @ref https://nextjs.org/docs/app/building-your-application/routing/middleware#using-cookies
@@ -38,28 +38,37 @@ export function middleware(request: NextRequest) {
         }
     }
 
-
+    /**
+     * -------------------------------------------
+     * # Get Referer url
+     * -------------------------------------------
+     * @desc -
+     *
+     */
+    const url: any = request.headers.get("referer") || request.nextUrl.origin
+    /**
+     * -------------------------------------------
+     * # Set Redirect with cookie
+     * -------------------------------------------
+     * @desc -
+     *
+     */
     if (request.nextUrl.pathname.startsWith('/change/lang/en')) {
-        const url: any = request.headers.get("referer") || request.nextUrl.origin
-        response.cookies.set("_lang", "en");
-        /**
-         * -------------------------------------------
-         * # Set redirect to referer or original path
-         * -------------------------------------------
-         * @desc -
-         *
-         */
+        const resRedirect :any = NextResponse.redirect(new URL(url, request.url));
+        resRedirect.cookies.set("_lang", "en");
+        return resRedirect
     }
     if (request.nextUrl.pathname.startsWith('/change/lang/th')) {
-        const url: any = request.headers.get("referer") || request.nextUrl.origin
-        response.cookies.set("_lang", "th");
-        /**
-         * -------------------------------------------
-         * # Set redirect to referer or original path
-         * -------------------------------------------
-         * @desc -
-         *
-         */
+        const resRedirect :any = NextResponse.redirect(new URL(url, request.url));
+        resRedirect.cookies.set("_lang", "th");
+        return resRedirect
     }
+    /**
+     * -------------------------------------------
+     * # Return response
+     * -------------------------------------------
+     * @desc -
+     *
+     */
     return response
 }
