@@ -29,7 +29,7 @@ export function middleware(request: NextRequest) {
         {
             /**
              * -------------------------------------------
-             * # False : set lang default
+             * # False : set cookie _lang
              * -------------------------------------------
              * @desc - On false set 'en' everytime
              *
