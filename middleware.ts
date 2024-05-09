@@ -34,7 +34,7 @@ export function middleware(request: NextRequest) {
              * @desc - On false set 'en' everytime
              *
              */
-            response.cookies.set("_lang", "en");
+            response.cookies.set("_lang", "en"); //-> Return default cookie `_lang` = `en` or you can change to your local 
         }
     }
 
