@@ -29,6 +29,6 @@ export function get_lang() {
         case  "th" :
             return th
         default:
-            return en;
+            return en; //-> Return default language
     }
 }
